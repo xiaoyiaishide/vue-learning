@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="../assets/js/Vue.js"></script></head>
+<body>
+	<h1>v-if&v-else&v-show</h1>
+	<hr>
+	<div id="app">
+		<div v-if="isLogin">
+			您好，用户！
+		</div>
+		<div v-if="!isLogin">
+			请重新登陆！
+		</div>
+	</div>
+	<ol>
+		<li>v-if： 判断是否加载，可以减轻服务器的压力，在需要时加载。</li>
+		<li>v-show：调整css dispaly属性，可以使客户端操作更加流畅。</li>
+	</ol>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: '#app',
+			data:{
+				isLogin: true
+			}
+		})
+	</script>
+</body>
+</html>
