@@ -10,13 +10,26 @@
 	<div id="app">
 		<ul>
 			<li v-for='item in arr'>{{item}}</li>
+		</ul>		
+		<ul>
+			<li v-for='(person, index) in people'>{{index+1}},{{person.name}},{{person.age}}</li>
 		</ul>
 	</div>
 	<script type="text/javascript">
 		var app = new Vue({
 			el: '#app',
 			data: {
-				arr: [1,2,3,4,5,6,7,8]
+				arr: [1,2,3,4,5,6,7,8],
+				people:[{
+					name:'aa',
+					age:11
+				},{
+					name:'bb',
+					age:22
+				},{
+					name:'aa',
+					age:33
+				}]
 			}
 		});
 	</script>
