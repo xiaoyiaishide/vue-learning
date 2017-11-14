@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>v-bind实例</title>
+	<script type="text/javascript" src="../assets/js/Vue.js"></script>
+</head>
+<body>
+	<h1>v-bind实例</h1>
+	<hr>
+	<div id='app'>
+		<img v-bind:src="imgUrl">
+		<a :href="jumpUrl">百度一下</a>
+		<hr>
+		<div :class="classA">1.绑定class</div>
+		<div :class="{classA: isOk}">2.绑定class中的判断</div>
+		<input type="checkbox" v-model="isOk">
+		<label for="isOk">{{isOk}}</label>
+		<div :class="[classA, classB]">3.以数组的形式绑定class</div>
+		<div :class="isOk?classA:classB">4.以三元运算符的形式绑定class</div>
+
+		<hr>
+		<div :style="{color:red,fontSize: font}">5.绑定style值</div>
+		<div :style="styleObj">5.绑定style对象</div>
+	</div>
+	<style type="text/css">
+		.classA{
+			color: red;
+		}
+		.classB{
+			font-size: 20px
+		}
+1	</style>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: '#app',
+			data:{
+				message: 'Hello World',
+				imgUrl: '../assets/img/aa.png',
+				jumpUrl: 'http://www.baidu.com',
+				classA: 'classA',
+				classB: 'classB',
+				isOk: false,
+				red: 'red',
+				styleObj: {
+					color:'green',
+					fontSize:'weight'//vue不支持font-size写法，必须写成驼峰
+				}
+			}
+		})
+	</script>
+</body>
+</html>
