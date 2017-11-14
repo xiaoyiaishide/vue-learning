@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>v-on实例</title>
+	<script type="text/javascript" src="../assets/js/Vue.js"></script>
+</head>
+<body>
+	<h1>v-on</h1>
+	<hr>
+	<div id="app">
+		<button v-on:click="plus">加分</button><button @click="minus">减分</button>本场比赛得分,{{score}}
+		<input type="text" v-model='plusScore' @keyup="merge1">
+	</div>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: '#app',
+			data:{
+				score: 0
+			},
+			methods:{
+				plus:function() {
+					this.score++;
+				},
+				minus:function() {
+					this.score--;
+				},
+				merge1:function() {
+					this.score+=(parseInt(this.plusScore)||0);
+				}
+			}
+		})
+	</script>
+</body>
+</html>
