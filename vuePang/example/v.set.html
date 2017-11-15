@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Vue.set全局操作</title>
+	<script type="text/javascript" src="../assets/js/Vue.js"></script>
+</head>
+<body>
+	<h1>Vue.set全局操作</h1>
+	<hr>
+	<!-- <div id='app'>count: {{outData.count}},goods:{{outData.goods}}</div> -->
+	<div id='app'>
+		count:{{count}}
+		<ul>
+			<li v-for="item in arr">{{item}}</li>
+		</ul>
+	</div>
+	<button v-model="count" onclick="add()">plus</button>
+	<script type="text/javascript">
+		function add() {
+			// Vue.set(outData,'count', 2);
+			// app.count++;
+			// outData.count++;除非有这句
+			// app.arr[1] = 'ddd';//vue无法监听下标，除非先前渲染过dom
+			Vue.set(app.arr,1,'ddd');//使用vue set可以解决这个问题
+		}
+		var outData = {
+			count: 1,
+			goods: 'car',
+			arr: ['aaa', 'bbb', 'ccc']
+		}
+		var app = new Vue({
+			el: '#app',
+			data:outData
+		})
+	</script>
+</body>
+</html>

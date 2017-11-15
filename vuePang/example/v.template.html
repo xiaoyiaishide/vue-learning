@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Vue模板</title>
+	<script type="text/javascript" src="../assets/js/Vue.js"></script>
+</head>
+<body>
+	<h1>Vue模板</h1>
+	<hr>
+	<div id='app'>{{message}}</div>
+	<template id="temp"><h2 style="color:red">我是template标签模板</h2></template>
+
+	<script type="x-template" id="tempTag">
+		<h2 style="color:red">我是script标签模板</h2>
+	</script>
+	
+	<script type="text/javascript">
+		var app = new Vue({
+			el: '#app',
+			data:{
+				message: 'Hello World'
+			},
+			// template:`<h2 style="color:red">我是选项模板</h2>`,
+			template:"#temp"
+		})
+	</script>
+</body>
+</html>

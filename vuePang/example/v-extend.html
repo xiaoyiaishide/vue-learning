@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>扩展实例构造器</title>
+	<script type="text/javascript" src="../assets/js/Vue.js"></script>
+</head>
+<body>
+	<h1>扩展实例构造器</h1>
+	<hr>
+	<author></author>
+	<div id="author"></div>
+	<script type="text/javascript">
+		var authorExtend = Vue.extend({
+			template:"<p><a :href='jumpUrl'>{{authorName}}</a></p>",
+			data:function() {
+				return{
+					authorName:'hhh',
+					jumpUrl:'http://www.baidu.com'
+				}
+			}
+		});
+		new authorExtend().$mount("#author");
+		new authorExtend().$mount("author");
+	</script>
+</body>
+</html>
