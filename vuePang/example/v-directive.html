@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>自定义指令</title>
+	<script type="text/javascript" src="../assets/js/Vue.js"></script>
+</head>
+<body>
+	<h1>自定义指令</h1>
+	<hr>
+	<div id='app'>
+		<div v-jsstyle="color">{{num}}</div>
+		<div v-jslive="color">{{num}}</div>
+		<p>
+			<button @click="add">ADD</button>
+		</p>
+		<P>
+			<button onclick="unclick()">解绑</button>
+		</P>
+	</div>
+	<script type="text/javascript">
+		function unclick() {
+			app.$destory();
+		}
+		Vue.directive('jsstyle',function(el, binding) {
+			console.log(el);
+			console.log(binding);
+			console.log(binding.name);
+			console.log(binding.value);
+			console.log(binding.expression);
+			el.style = "color:"+binding.value;
+		});		
+		Vue.directive('jslive',{
+			bind:function(){//被绑定
+			     console.log('1 - bind');
+			},
+			inserted:function(){//绑定到节点
+			      console.log('2 - inserted');
+			},
+			update:function(){//组件更新
+			      console.log('3 - update');
+			},
+			componentUpdated:function(){//组件更新完成
+			      console.log('4 - componentUpdated');
+			},
+			unbind:function(){//解绑
+			      console.log('5 - unbind');
+			}
+		})
+		var app = new Vue({
+			el: '#app',
+			data:{
+				num: 0,
+				color: 'red'
+			},
+			methods:{
+				add:function(argument) {
+					this.num++;
+				}
+			}
+		})
+
+	</script>
+</body>
+</html>
