@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Mixins</title>
+	<script type="text/javascript" src="../assets/js/Vue.js"></script>
+</head>
+<body>
+	<h1>Mixins</h1>
+	<hr>
+	<div id='app'>
+		{{num}}
+		<button @click="Add()">Add</button>
+	</div>
+	<script type="text/javascript"> 
+        //额外临时加入时，用于显示日志
+        var addLog={
+            updated:function(){
+                console.log("数据放生变化,变化成"+this.num+".");
+            }
+        }
+		var app = new Vue({
+			el: '#app',
+			data:{
+				num: 1
+			},
+			methods:{Add: function() {
+				this.num++;
+			}},
+			mixins:[addLog],
+			updated:function() {
+				console.log('原生update');
+			}
+		})
+
+		Vue.mixin({
+		    updated:function(){
+		        console.log('我是全局被混入的');
+		    }
+		})//全局的混入首先执行
+	</script>
+</body>
+</html>
