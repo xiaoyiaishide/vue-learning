@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Component-2</title>
+	<script type="text/javascript" src="../assets/js/Vue.js"></script>
+</head>
+<body>
+	<h1>Component-1</h1>
+	<hr>
+	<div id='app'>
+		<panda here="China" from-here="Sichuan"></panda>
+	</div>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: '#app',
+			data:{
+				message: 'Hello World'
+			},
+			components:{
+				'panda':{
+					template: `<div style="color:green">Panda from {{ here }}'s  {{ fromHere }}</div>`,
+					props:['here','fromHere']
+					//vue中不支持-这个标识符，但是他会自动将html中的-转成驼峰表示法
+				}
+			}
+		})
+	</script>
+</body>
+</html>

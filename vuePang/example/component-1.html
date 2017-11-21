@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Component-1</title>
+	<script type="text/javascript" src="../assets/js/Vue.js"></script>
+</head>
+<body>
+	<h1>Component-1</h1>
+	<hr>
+	<div id='app'>
+		<vuetest></vuetest>
+		<panda></panda>
+	</div>
+	<script type="text/javascript">
+		//全局组件定义
+		Vue.component('vuetest',{
+			template: `<div style="color:red">我是全局的组件</div>`,
+		});
+		var app = new Vue({
+			el: '#app',
+			data:{
+				message: 'Hello World'
+			},
+			components:{
+				'panda':{
+					template: `<div style="color:green">我是局部的熊猫组件</div>`
+				}
+			}
+		})
+	</script>
+</body>
+</html>
