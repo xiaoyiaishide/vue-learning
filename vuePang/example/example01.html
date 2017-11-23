@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>example01</title>
+	<script type="text/javascript" src="../assets/js/Vue.js"></script>
+	<script type="text/javascript" src="../assets/js/jquery.js"></script>
+</head>
+<body>
+	<h1>example01</h1>
+	<hr>
+	<div id='app'>{{message}}</div>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: '#app',
+			data:{
+				message: 'Hello World'
+			},
+			mounted:function() {
+				$('#app').html('我是jquery');
+			},
+			methods:{
+				add:function(){
+					console.log('外部調用了構造器的内部方法')
+				}
+			}
+		})
+		app.methods();
+	</script>
+</body>
+</html>

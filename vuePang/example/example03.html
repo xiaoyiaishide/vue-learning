@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>example03</title>
+	<script type="text/javascript" src="../assets/js/Vue.js"></script>
+</head>
+<body>
+	<h1>example03</h1>
+	<hr>
+	<p>
+		<div id="app">
+			{{score}}
+			<button v-on:click="plus">加分</button>
+			
+		</div>
+	</p>
+		<p><button onclick="reduce()">减分</button></p>
+		<p><button onclick="reduceOnce()">只减一次</button></p>
+		<p><button onclick="off()">关闭方法</button></p>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: '#app',
+			data:{
+				score: 0
+			},
+			methods:{
+				plus:function() {
+					this.score++;
+				}
+			}
+		})
+
+		app.$on('reduce',function(){
+			this.score--;
+			console.log('执行了减法方法');
+		})
+
+		app.$once('reduceOnce',function(){
+		    console.log('只执行一次的方法');
+		    this.score--;
+		 
+		});		
+
+		app.$off('off',function(){
+		    console.log('关闭方法');
+		 
+		});
+
+		//关闭事件
+		function off(){
+		   app.$off('reduce');
+		}
+
+		function reduce(argument) {
+			app.$emit('reduce');
+		}		
+
+		function reduceOnce(argument) {
+			app.$emit('reduceOnce');
+		}		
+
+		function off(argument) {
+			app.$emit('off');
+		}
+
+	</script>
+</body>
+</html>
