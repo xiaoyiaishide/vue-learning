@@ -1,0 +1,96 @@
+<html>
+    <head>
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+        <title>vuejs实战第六章</title>
+    </head>
+    <body>
+        //text
+        <div id="app1">
+            <input v-model='num'/>
+            <div>
+                输入的内容是：{{num}}
+            </div>
+        </div>
+
+        //radioButton
+        <div id="app2">
+            <input type="radio" v-model="radioChecked" value="苹果">苹果
+            <input type="radio" v-model="radioChecked" value="小米">小米
+            <input type="radio" v-model="radioChecked" value="三星">三星            
+            <div>选中的状态为： {{ radioChecked }}</div>
+        </div>
+
+        //checkbox
+        <div id="app3">
+            <input type="checkbox" v-model="checkboxChecked" value="苹果">苹果
+            <input type="checkbox" v-model="checkboxChecked" value="小米">小米
+            <input type="checkbox" v-model="checkboxChecked" value="三星">三星            
+            <div>选中的状态为： {{ checkboxChecked }}</div>
+        </div>
+        
+        //下拉框
+        <div id="app4">
+            <select name="" id="" v-model="selected">
+            <!-- <select name="" id="" v-model="selected" multiple> -->
+                <option value="苹果">苹果</option>
+                <option value="三星">三星</option>
+                <option value="小米">小米</option>            
+            </select>
+            <div>{{selected}}</div>
+        </div>
+
+        //循环输入输出下拉框
+        <div id="app5">
+            <select name="" id="" v-model="selected">
+                <option v-for="option in options" :value="option.value">{{option.text}}</option>
+            </select>
+            <div>{{selected}}</div>            
+        </div>
+    </body>
+    <script>
+        let app1 = new Vue({
+            el: '#app1',
+            data: {
+                num:1
+            }
+        })
+
+        let app2 = new Vue({
+            el: '#app2',
+            data: {
+                radioChecked: '小米'
+            }
+        }) 
+
+        let app3 = new Vue({
+            el: '#app3',
+            data: {
+                checkboxChecked: ['苹果']
+            }
+        }) 
+
+        let app4 = new Vue({
+            el: '#app4',
+            data: {
+                selected: '苹果'
+            }
+        }) 
+
+        let app5 = new Vue({
+            el: '#app5',
+            data: {
+                selected: '小米',
+                options:[{
+                    text: '小米',
+                    value: '小米'
+                },{
+                    text: '三星',
+                    value: '三星'
+                },{
+                    text: '苹果',
+                    value: '苹果'
+                }]
+            }
+        }) 
+    </script>
+</html>
