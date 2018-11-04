@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>watch Option</title>
+	<script type="text/javascript" src="../assets/js/Vue.js"></script>
+</head>
+<body>
+	<h1>watch Option</h1>
+	<hr>
+	<div id="app">
+		<p>今天的温度{{num}}</p>
+		<p>穿衣推荐{{proposal}}</p>
+		<button @click="addNum()">增加</button>
+		<button @click="downNum()">减少</button>
+	</div>
+	<button onclick="app.addNum()">外部Add</button>
+	<script type="text/javascript">
+		var numArr = ['短袖', '夹克衫', '棉衣羽绒服'];
+		var app = new Vue({
+			el: '#app',
+			data:{
+				num: 0,
+				proposal: numArr[1]
+			},
+			methods:{
+				addNum:function() {
+					this.num+=5;
+				},
+				downNum:function() {
+					this.num-=5;
+				}
+			},
+			//内部监听
+			// watch:{
+			// 	num:function(newVal, oldVal) {
+			// 		if(newVal>26){
+			// 			this.proposal = numArr[0];
+			// 		}else{
+			// 			this.proposal = numArr[2];
+			// 		}
+			// 	}
+			// }
+		})
+		//外部监听
+		app.$watch('num',function(newVal, oldVal) {
+					if(newVal>26){
+						this.proposal = numArr[0];
+					}else{
+						this.proposal = numArr[2];
+					}
+				})
+	</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Component-3</title>
+	<script type="text/javascript" src="../assets/js/Vue.js"></script>
+</head>
+<body>
+	<h1>Component-3</h1>
+	<hr>
+	<div id='app'>
+		<panda></panda>
+	</div>
+	<script type="text/javascript">
+		//子組件
+		var city = {
+			template: `<div style="color:green">sichuan of China</div>`
+		}
+		//父組件
+		var panda = {
+			template: `
+				<div>
+					<p>Panda from China</p>
+					<city></city>
+				</div>
+			`,
+			components:{
+				"city": city
+			}
+		}		
+
+		var app = new Vue({
+			el: '#app',
+			data:{
+				message: 'Hello World'
+			},
+			components:{
+				"panda": panda
+			}
+		})
+	</script>
+</body>
+</html>

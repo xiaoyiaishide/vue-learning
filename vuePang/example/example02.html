@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>example02</title>
+	<script type="text/javascript" src="../assets/js/Vue.js"></script>
+</head>
+<body>
+	<h1>example02</h1>
+	<hr>
+	<div id='app'>
+	</div>
+		<button onclick="destroy()">卸载</button>
+		<button onclick="reload()">刷新</button>
+		<button onclick="tick()">更改数据</button>
+	<script type="text/javascript">
+		function destroy(){
+			vm.$destroy();
+		}		
+		function reload(){
+			vm.$forceUpdate();
+		}
+
+		function tick(){
+		    vm.message="update message info ";
+		    vm.$nextTick(function(){
+		        console.log('message更新完后我被调用了');
+		    })
+		}
+		var jsVue = Vue.extend({
+			template:`<p>{{message}}</p>`,
+			data:function(argument) {
+				return {
+					message: 'I am vueJs' 
+				}
+			},
+			mounted:function(argument) {
+				console.log('mounted 被创建');
+			},
+			destroyed:function(argument) {
+				console.log('destroy 销毁之后');
+			},
+			updated:function(){
+				console.log('updated 更新之后');
+			}
+		})
+
+		var vm = new jsVue().$mount('#app');
+	</script>
+</body>
+</html>

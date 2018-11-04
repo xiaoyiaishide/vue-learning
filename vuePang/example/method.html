@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Methods Option</title>
+	<script type="text/javascript" src="../assets/js/Vue.js"></script>
+</head>
+<body>
+	<h1>Methods Option</h1>
+	<hr>
+	<div id="app">
+		{{num}}
+		<button @click="addNum(2,$event)">Add</button>
+		<btn @click.native="addNum(2,$event)"></btn><!-- 组件访问内部构造器的方法 -->
+	</div>
+	<button onclick="app.addNum()">外部Add</button>
+	<script type="text/javascript">
+		var btn= {
+			template:`<button>自定义加方法</button>`
+		}
+		var app = new Vue({
+			el: '#app',
+			data:{
+				num: 0
+			},
+			components:{
+				'btn': btn
+			},
+			methods:{
+				addNum:function(num1, event) {
+					this.num++;
+					console.log(event);
+				}
+			}
+		})
+	</script>
+</body>
+</html>

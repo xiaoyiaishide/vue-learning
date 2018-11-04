@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+</head>
+<body>
+    <div id="app">
+        <el-table
+            :data="tableData"
+            style="width:100%">
+            <el-table-column
+                prop="id"
+                label=""
+                width="100">
+            </el-table-column>
+            <el-table-column
+                prop="name"
+                label="商品名称"
+                width="100">
+            </el-table-column>
+            <el-table-column
+                prop="price"
+                label="商品单价"
+                width="100">
+
+            </el-table-column>
+            <el-table-column
+                prop="count"
+                label="购买数量"
+                width="200">
+                <template slot-scope="scope">
+                    <el-row>
+                        <el-col :span="4"><span class="el-icon-plus" @click="plus(scope.$index)"></span></el-col>
+                        <el-col :span="3" push="1">{{scope.row.count}}</el-col>
+                        <el-col :span="4" push="2"><span class="el-icon-minus" @click="minus(scope.$index)"></span></el-col>
+                    </el-row>
+                </template>
+            </el-table-column>
+            <el-table-column
+                prop="action"
+                label="操作"
+                width="100">
+                <template slot-scope="scope">
+                    <el-button @click="handleCilck(scope.$index, tableData)">移除</el-button>
+                </template>
+            </el-table-column>
+        </el-table>
+        <div>
+            总价：{{ TotalPrice }}
+        </div>
+    </div>
+</body>
+    <!-- import Vue before Element -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: function(){
+                return { 
+                    num: 1,
+                    tableData: [{
+                        id: '1',
+                        name: 'iPhone 7',
+                        price: 6188,
+                        count: 1,
+                        action: '操作',
+                    },{
+                        id: '2',
+                        name: 'iPad Pro',
+                        price: 5888,
+                        count: 1,
+                        action:'操作',
+                    },{
+                        id: '3',
+                        name: 'Macbook Pro',
+                        price: 214888,
+                        count: 1,
+                        action: '操作',
+                    }] 
+                }
+            },
+            methods:{
+                handleCilck: function(index, tableData){
+                    tableData.splice(index, 1);
+                },
+                plus: function(index){
+                    this.tableData[index].count++;
+                },
+                minus: function(index){
+                    this.tableData[index].count--;
+                }
+            },
+            computed: {
+                TotalPrice: function(){
+                    let totalPrice = 0;
+                    this.tableData.forEach(function(v){
+                        totalPrice+=v.count;
+                    })
+                    return totalPrice;
+                }
+            }
+        })
+    </script>
+</html>

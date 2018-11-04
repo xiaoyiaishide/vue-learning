@@ -1,0 +1,94 @@
+<html>
+    <head>
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+        <title>VueJS实战 组件</title>
+    </head>
+    <body>
+        <div id="app">
+            <h3>组件</h3>
+            <my-component></my-component>
+            <my-component></my-component>
+            <my-component></my-component>
+        </div>
+
+        <div id="app1">
+            <my-component1 message="父组件的props1"></my-component1>
+        </div>
+
+        <div id="app2">
+            <my-component2 :message="parentMessage"></my-component2>
+        </div>
+
+        <div id="app3">
+            <my-component3 :initcount="2"></my-component3>
+        </div>
+
+        <div id="app4">
+            <my-component4 :width="100"></my-component4> 
+        </div>
+    </body>
+    <script>
+        Vue.component('my-component', {
+            template: "<button @click='counter++'>{{ counter }}</button>",
+            data: function (){
+                return { counter: 0 }
+            }
+        })
+
+        var app = new Vue({
+            el: '#app'
+        })
+
+        //props 写死
+        Vue.component('my-component1', {
+            props: ['message'],
+            template: '<div>{{ message }}</div>'
+        })
+
+        var app1 = new Vue({
+            el: '#app1'
+        })
+
+        //props 动态
+        Vue.component('my-component2', {
+            props: ['message'],
+            template: '<div>{{ message }}</div>'
+        })
+
+        var app2 = new Vue({
+            el: '#app2',
+            data: {
+                parentMessage: '父级动态props'
+            }
+        })
+
+        //单项数据流
+        Vue.component('my-component3', {
+            props:['initcount'],
+            template: '<div>{{count}}</div>',
+            data: function(){
+                return { count: this.initcount }
+            }
+        })
+
+        var app3 = new Vue({
+            el: '#app3'
+        })
+
+        Vue.component('my-component4', {
+            props: ['width'],
+            template: "<div :style='style'>模板内容</div>",
+            computed: {
+                style: function(){
+                    return {
+                        width: this.width + 'px'
+                    }
+                }
+            }
+        })
+
+        var app4 = new Vue({
+            el: '#app4'
+        })
+    </script>
+</html>
